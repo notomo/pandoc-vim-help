@@ -11,7 +11,6 @@ See document (sample_prefix/doc/myplugin.txt).
 Requirements
                                                        *example1-Requirements*
 
-
 ・test1
   test1 body1
   test1 body2
@@ -20,6 +19,11 @@ Requirements
     ・test1-2-1
 ・test2
 
+
+1. test1
+  1. test1-1
+  2. test1-2
+2. test2
 
 
 ==============================================================================

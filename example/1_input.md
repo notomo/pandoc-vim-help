@@ -14,6 +14,11 @@ See [document](doc/myplugin.txt).
         - test1-2-1
 - test2
 
+1. test1
+    1. test1-1
+    2. test1-2
+2. test2
+
 ## Usage
 
 ```vim

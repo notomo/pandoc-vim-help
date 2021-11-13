@@ -35,16 +35,19 @@ function M.BulletList(items)
     local indented = util.indent(table.concat(tail, "\n"), 2)
     table.insert(buffer, table.concat({head, indented}, "\n"))
   end
-  return "\n" .. table.concat(buffer, "\n") .. "\n"
+  return table.concat(buffer, "\n")
 end
 
 function M.OrderedList(items)
-  -- TODO handle nested list?
   local buffer = {}
   for i, item in ipairs(items) do
-    table.insert(buffer, ("%d. %s"):format(i, item))
+    local lines = util.split(item:gsub("^\n+", ""), "\n")
+    local head = ("%d. %s"):format(i, lines[1])
+    local tail = util.slice(lines, 2)
+    local indented = util.indent(table.concat(tail, "\n"), 2)
+    table.insert(buffer, table.concat({head, indented}, "\n"))
   end
-  return "\n" .. table.concat(buffer, "\n") .. "\n"
+  return table.concat(buffer, "\n")
 end
 
 function M.DefinitionList(items)
