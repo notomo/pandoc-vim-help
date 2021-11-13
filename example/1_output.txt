@@ -5,6 +5,8 @@ myplugin
 
 my plugin!
 
+See document (sample_prefix/doc/myplugin.txt).
+
 ==============================================================================
 Requirements
                                                        *example1-Requirements*

@@ -2,6 +2,8 @@
 
 my plugin!
 
+See [document](doc/myplugin.txt).
+
 # Requirements
 
 - Neovim nightly
