@@ -27,10 +27,13 @@ function M.Header(_, s)
 end
 
 function M.BulletList(items)
-  -- TODO handle nested list?
   local buffer = {}
   for _, item in ipairs(items) do
-    table.insert(buffer, "・" .. item)
+    local lines = util.split(item, "\n")
+    local head = "・" .. lines[1]
+    local tail = util.slice(lines, 2)
+    local indented = util.indent(table.concat(tail, "\n"), 2)
+    table.insert(buffer, table.concat({head, indented}, "\n"))
   end
   return "\n" .. table.concat(buffer, "\n") .. "\n"
 end
