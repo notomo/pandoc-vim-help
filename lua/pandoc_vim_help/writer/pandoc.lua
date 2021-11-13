@@ -11,8 +11,7 @@ local M = {}
 
 function M.Doc(body)
   local buffer = {}
-  -- TODO: custom header
-  table.insert(buffer, help.header(PANDOC_STATE.output_file))
+  table.insert(buffer, help.header(PANDOC_STATE.output_file, option.header_text))
   table.insert(buffer, body)
   table.insert(buffer, "")
   table.insert(buffer, separator)

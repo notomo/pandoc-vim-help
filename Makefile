@@ -10,6 +10,7 @@ OUTPUT:= example/test_gen.txt
 INPUT:= example/test_gen.md
 TAG_PREFIX:= example1
 LINK_TARGET_PREFIX:= https://example.com/
+EXTRA_ARGS:=
 gen:
 	pandoc \
  --from ${FROM} \
@@ -20,6 +21,7 @@ gen:
  --metadata=tag_prefix:${TAG_PREFIX} \
  --lua-filter lua/pandoc_vim_help/filter/relative_to_absolute_link/init.lua \
  --metadata=link_target_prefix:${LINK_TARGET_PREFIX} \
+ ${EXTRA_ARGS} \
  ${INPUT}
 	cat ${OUTPUT}
 .PHONY: gen
@@ -27,7 +29,8 @@ gen:
 example/1_output.txt:
 	${MAKE} gen \
  INPUT=example/1_input.md \
- OUTPUT=$@
+ OUTPUT=$@ \
+ EXTRA_ARGS='--metadata=header_text:"my plugin"'
 
 INPUT_URL:= https://example.com/
 gen_by_url:

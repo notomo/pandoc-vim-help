@@ -1,4 +1,4 @@
-*1_output.txt*
+*1_output.txt* my plugin
 ==============================================================================
 myplugin
                                                            *example1-myplugin*
