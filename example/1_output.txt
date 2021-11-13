@@ -5,7 +5,7 @@ myplugin
 
 my plugin!
 
-See document (sample_prefix/doc/myplugin.txt).
+See document (https://example.com/doc/myplugin.txt).
 
 ==============================================================================
 Requirements

@@ -9,7 +9,7 @@ FROM:= commonmark
 OUTPUT:= example/test_gen.txt
 INPUT:= example/test_gen.md
 TAG_PREFIX:= example1
-LINK_TARGET_PREFIX:= sample_prefix/
+LINK_TARGET_PREFIX:= https://example.com/
 gen:
 	pandoc \
  --from ${FROM} \
