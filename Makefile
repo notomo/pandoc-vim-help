@@ -1,22 +1,42 @@
 # for require
 export LUA_PATH=./lua/?.lua;;
 
-start: example/1_output.txt
+start:
+	${MAKE} -B $(wildcard example/*_output.*)
 .PHONY: start
 
-example/1_output.txt:
+FROM:= commonmark
+OUTPUT:= example/test_gen.txt
+INPUT:= example/test_gen.md
+TAG_PREFIX:= example1
+LINK_TARGET_PREFIX:= sample_prefix/
+gen:
 	pandoc \
- --from commonmark \
+ --from ${FROM} \
  --to lua/pandoc_vim_help/writer/init.lua \
- --output $@ \
+ --output ${OUTPUT} \
  --metadata=textwidth:78 \
  --metadata=tabstop:8 \
- --metadata=tag_prefix:example1 \
+ --metadata=tag_prefix:${TAG_PREFIX} \
  --lua-filter lua/pandoc_vim_help/filter/relative_to_absolute_link/init.lua \
- --metadata=link_target_prefix:sample_prefix/ \
- example/1_input.md
-	cat $@
-.PHONY: example/1_output.txt
+ --metadata=link_target_prefix:${LINK_TARGET_PREFIX} \
+ ${INPUT}
+	cat ${OUTPUT}
+.PHONY: gen
+
+example/1_output.txt:
+	${MAKE} gen \
+ INPUT=example/1_input.md \
+ OUTPUT=$@
+
+INPUT_URL:= https://example.com/
+gen_by_url:
+	${MAKE} gen \
+ FROM=html \
+ INPUT=${INPUT_URL} \
+ OUTPUT=example/test_gen_by_url.txt \
+ LINK_TARGET_PREFIX=${LINK_TARGET_PREFIX}
+.PHONY: gen_by_url
 
 # TODO
 # test:
