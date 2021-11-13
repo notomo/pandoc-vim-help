@@ -15,8 +15,7 @@ function M.Doc(body)
   table.insert(buffer, body)
   table.insert(buffer, "")
   table.insert(buffer, separator)
-  -- TODO: custom footer
-  table.insert(buffer, help.footer(option.textwidth, option.tabstop))
+  table.insert(buffer, option.modeline)
   return table.concat(buffer, "\n") .. "\n"
 end
 

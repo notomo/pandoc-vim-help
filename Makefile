@@ -17,7 +17,6 @@ gen:
  --to lua/pandoc_vim_help/writer/init.lua \
  --output ${OUTPUT} \
  --metadata=textwidth:78 \
- --metadata=tabstop:8 \
  --metadata=tag_prefix:${TAG_PREFIX} \
  --lua-filter lua/pandoc_vim_help/filter/relative_to_absolute_link/init.lua \
  --metadata=link_target_prefix:${LINK_TARGET_PREFIX} \

@@ -16,10 +16,6 @@ function M.separator(textwidth)
   return ("="):rep(textwidth)
 end
 
-function M.footer(textwidth, tabstop)
-  return ([[vim:tw=%d:ts=%d:ft=help]]):format(textwidth, tabstop)
-end
-
 function M.tag(prefix, str)
   if prefix ~= "" then
     str = prefix .. "-" .. str
