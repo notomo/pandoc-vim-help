@@ -22,17 +22,17 @@ end
 function M.Header(_, s)
   -- TODO handle separator and tag by level option
   local tag = help.tag(option.tag_prefix, s)
-  return separator .. "\n" .. s .. "\n" .. ("%" .. option.textwidth .. "s"):format(tag)
+  return separator .. "\n" .. help.add_tag(s, option.textwidth, tag)
 end
 
 function M.BulletList(items)
   local buffer = {}
   for _, item in ipairs(items) do
-    local lines = util.split(item, "\n")
-    local head = "・" .. lines[1]
-    local tail = util.slice(lines, 2)
-    local indented = util.indent(table.concat(tail, "\n"), 2)
-    table.insert(buffer, table.concat({head, indented}, "\n"))
+    local first, others = util.splitted_first(item, "\n")
+    local head = "・" .. first
+    local indented = util.indent(others, 2)
+    local str = table.concat({head, indented}, "\n")
+    table.insert(buffer, str)
   end
   return table.concat(buffer, "\n")
 end
@@ -40,11 +40,11 @@ end
 function M.OrderedList(items)
   local buffer = {}
   for i, item in ipairs(items) do
-    local lines = util.split(item:gsub("^\n+", ""), "\n")
-    local head = ("%d. %s"):format(i, lines[1])
-    local tail = util.slice(lines, 2)
-    local indented = util.indent(table.concat(tail, "\n"), 2)
-    table.insert(buffer, table.concat({head, indented}, "\n"))
+    local first, others = util.splitted_first(item:gsub("^\n+", ""), "\n")
+    local head = ("%d. %s"):format(i, first)
+    local indented = util.indent(others, 2)
+    local str = table.concat({head, indented}, "\n")
+    table.insert(buffer, str)
   end
   return table.concat(buffer, "\n")
 end

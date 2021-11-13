@@ -26,6 +26,12 @@ function M.splitted_last(str, sep)
   return splitted[#splitted]
 end
 
+function M.splitted_first(str, sep)
+  local splitted = M.split(str, sep)
+  local others = M.slice(splitted, 2)
+  return splitted[1], table.concat(others, sep)
+end
+
 function M.starts_with(str, prefix)
   return str:sub(1, #prefix) == prefix
 end
