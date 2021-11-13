@@ -1,7 +1,7 @@
 *1_output.txt* my plugin
 ==============================================================================
 myplugin
-                                                           *example1-myplugin*
+                                                            *example-myplugin*
 
 my plugin!
 
@@ -9,7 +9,7 @@ See document (https://example.com/doc/myplugin.txt).
 
 ==============================================================================
 Requirements
-                                                       *example1-Requirements*
+                                                        *example-Requirements*
 
 ・test1
   test1 body1
@@ -28,7 +28,7 @@ Requirements
 
 ==============================================================================
 Usage
-                                                              *example1-Usage*
+                                                               *example-Usage*
 
 >
   nnoremap M <Cmd>Myplugin<CR>

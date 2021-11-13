@@ -19,10 +19,13 @@ function M.Doc(body)
   return table.concat(buffer, "\n") .. "\n"
 end
 
-function M.Header(_, s)
-  -- TODO handle separator and tag by level option
-  local tag = help.tag(option.tag_prefix, s)
-  return separator .. "\n" .. help.add_tag(s, option.textwidth, tag)
+function M.Header(level, s)
+  local str = separator .. "\n" .. s
+  if level <= option.tag_level_max then
+    local tag = help.tag(option.tag_prefix, s)
+    str = str .. help.add_tag(option.textwidth, tag)
+  end
+  return str
 end
 
 function M.BulletList(items)

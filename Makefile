@@ -8,7 +8,7 @@ start:
 FROM:= commonmark
 OUTPUT:= example/test_gen.txt
 INPUT:= example/test_gen.md
-TAG_PREFIX:= example1
+TAG_PREFIX:= example
 LINK_TARGET_PREFIX:= https://example.com/
 EXTRA_ARGS:=
 gen:
@@ -30,6 +30,12 @@ example/1_output.txt:
  INPUT=example/1_input.md \
  OUTPUT=$@ \
  EXTRA_ARGS='--metadata=header_text:"my plugin"'
+
+example/2_output.txt:
+	${MAKE} gen \
+ INPUT=example/2_input.md \
+ OUTPUT=$@ \
+ EXTRA_ARGS=--metadata=tag_level_max:2
 
 INPUT_URL:= https://example.com/
 gen_by_url:

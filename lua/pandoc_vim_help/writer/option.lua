@@ -9,6 +9,7 @@ function M.new(metadata, output_file)
   local modeline_format = metadata.modeline_format or [[vim:tw=%d:ts=8:noet:ft=help:norl:]]
   return {
     header_text = metadata.header_text or "",
+    tag_level_max = tonumber(metadata.tag_level_max or 3),
     modeline = modeline_format:format(textwidth),
     textwidth = textwidth,
     tag_prefix = metadata.tag_prefix or util.splitted_last(output_file, "/"),

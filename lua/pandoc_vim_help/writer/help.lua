@@ -24,8 +24,8 @@ function M.tag(prefix, str)
   return ("*%s*"):format(str)
 end
 
-function M.add_tag(str, textwidth, tag)
-  return str .. "\n" .. ("%" .. textwidth .. "s"):format(tag)
+function M.add_tag(textwidth, tag)
+  return "\n" .. ("%" .. textwidth .. "s"):format(tag)
 end
 
 return M
