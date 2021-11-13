@@ -14,6 +14,7 @@ function M.Doc(body)
   -- TODO: custom header
   table.insert(buffer, help.header(PANDOC_STATE.output_file))
   table.insert(buffer, body)
+  table.insert(buffer, "")
   table.insert(buffer, separator)
   -- TODO: custom footer
   table.insert(buffer, help.footer(option.textwidth, option.tabstop))
