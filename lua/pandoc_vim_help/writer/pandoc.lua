@@ -56,10 +56,9 @@ function M.DefinitionList(items)
   local buffer = {}
   for _, item in pairs(items) do
     local k, v = next(item)
-    -- TODO: fix?
     table.insert(buffer, k .. "\n" .. util.indent(table.concat(v, "\n"), 2))
   end
-  return "\n" .. table.concat(buffer, "\n") .. "\n"
+  return table.concat(buffer, "\n")
 end
 
 function M.Table(_, _, _, headers, rows)

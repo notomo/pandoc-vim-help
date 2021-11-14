@@ -37,6 +37,12 @@ example/2_output.txt:
  OUTPUT=$@ \
  EXTRA_ARGS=--metadata=tag_level_max:2
 
+example/3_output.txt:
+	${MAKE} gen \
+ INPUT=example/3_input.html \
+ FROM=html \
+ OUTPUT=$@
+
 INPUT_URL:= https://example.com/
 gen_by_url:
 	${MAKE} gen \
