@@ -43,6 +43,12 @@ example/3_output.txt:
  FROM=html \
  OUTPUT=$@
 
+example/4_output.txt:
+	${MAKE} gen \
+ INPUT=example/4_input.html \
+ FROM=html \
+ OUTPUT=$@
+
 INPUT_URL:= https://example.com/
 gen_by_url:
 	${MAKE} gen \

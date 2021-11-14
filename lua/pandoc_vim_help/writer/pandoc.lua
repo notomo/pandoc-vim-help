@@ -62,22 +62,56 @@ function M.DefinitionList(items)
 end
 
 function M.Table(_, _, _, headers, rows)
-  -- TODO: align
-
   local buffer = {}
+  local all_rows = {headers}
 
-  local header_row = {}
-  local empty_header = true
-  for _, h in pairs(headers) do
-    table.insert(header_row, h)
-    empty_header = empty_header and h == ""
+  local column_max = 0
+  for _, row in ipairs(rows) do
+    table.insert(all_rows, row)
+    local length = #row
+    if column_max < length then
+      column_max = length
+    end
   end
-  if not empty_header then
-    table.insert(buffer, table.concat(header_row, " "))
+  local column_lengths = {}
+  for _ = 1, column_max do
+    table.insert(column_lengths, 0)
+  end
+  for _, row in ipairs(all_rows) do
+    for i, column in ipairs(row) do
+      local length = column_lengths[i]
+      if #column > length then
+        column_lengths[i] = #column
+      end
+    end
   end
 
+  do
+    local strs = {}
+    for i, column in ipairs(headers) do
+      local length = column_lengths[i]
+      table.insert(strs, ("%-" .. tostring(length) .. "s"):format(column))
+    end
+    local str = "| " .. table.concat(strs, " | ") .. " |"
+    table.insert(buffer, str)
+  end
+  do
+    local strs = {}
+    for i in ipairs(headers) do
+      local length = column_lengths[i]
+      table.insert(strs, ("-"):rep(length))
+    end
+    local str = "+-" .. table.concat(strs, "-+-") .. "-+"
+    table.insert(buffer, str)
+  end
   for _, row in pairs(rows) do
-    table.insert(buffer, table.concat(row, " "))
+    local strs = {}
+    for i, column in ipairs(row) do
+      local length = column_lengths[i]
+      table.insert(strs, ("%-" .. tostring(length) .. "s"):format(column))
+    end
+    local str = "| " .. table.concat(strs, " | ") .. " |"
+    table.insert(buffer, str)
   end
 
   return table.concat(buffer, "\n")
